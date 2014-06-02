@@ -7,6 +7,10 @@ namespace MVCMusicStore.Models
     {
     }
 
+    public class ApplicationRole : IdentityRole
+    {
+    }
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()

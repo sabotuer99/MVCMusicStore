@@ -43,7 +43,7 @@ namespace MVCMusicStore.Controllers
             var genreModel = storeDB.Genres.Include("Albums").Single(g => g.Name == genre);
             return View(genreModel);
         }
-
+         
         //
         // GET: /Store/Details/5
         public ActionResult Details(int id)

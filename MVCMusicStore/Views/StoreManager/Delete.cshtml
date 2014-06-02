@@ -4,10 +4,11 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Delete Confirmation</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
+@*<h3>Are you sure you want to delete this?</h3>*@
+<p>Are you sure you want to delete the album titled <strong>@Model.Title</strong>?</p>
+@*<div>
     <h4>Album</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -51,7 +52,7 @@
             @Html.DisplayFor(model => model.AlbumArtUrl)
         </dd>
 
-    </dl>
+    </dl>*@
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()

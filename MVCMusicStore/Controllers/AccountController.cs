@@ -48,6 +48,8 @@ namespace MVCMusicStore.Controllers
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
+                    MigrateShoppingCart(model.UserName);
+
                     await SignInAsync(user, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 }
@@ -82,6 +84,8 @@ namespace MVCMusicStore.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    MigrateShoppingCart(model.UserName);
+
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -317,6 +321,16 @@ namespace MVCMusicStore.Controllers
                 UserManager = null;
             }
             base.Dispose(disposing);
+        }
+
+        private void MigrateShoppingCart(string UserName)
+        {
+            // Associate shopping cart items with logged-in user
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+
+            cart.MigrateCart(UserName);
+            Session[ShoppingCart.CartSessionKey] = UserName;
+
         }
 
         #region Helpers

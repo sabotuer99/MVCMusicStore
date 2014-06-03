@@ -15,7 +15,8 @@ namespace MVCMusicStore
     {
         protected void Application_Start()
         {
-            System.Data.Entity.Database.SetInitializer(new MVCMusicStore.Models.SampleData());
+            //We only want to uncomment the line below if we want to reset the database....
+            //System.Data.Entity.Database.SetInitializer(new MVCMusicStore.Models.SampleData());
 
             //If this shit works it'll add an Administrator user and add the administrator role...
             var db = new ApplicationDbContext();

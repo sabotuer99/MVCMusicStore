@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVCMusicStore.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,12 @@ namespace MVCMusicStore.Controllers
 {
     public class HomeController : Controller
     {
+        MusicStoreEntities storeDB = new MusicStoreEntities();
+
         public ActionResult Index()
         {
-            return View();
+            var albums = GetTopSellingAlbums(5);
+            return View(albums);
         }
 
         public ActionResult About()
@@ -25,6 +29,17 @@ namespace MVCMusicStore.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        private List<Album> GetTopSellingAlbums(int count)
+        {
+            // Group the order details by album and return 
+            // the albums with the highest count 
+
+            return storeDB.Albums
+                .OrderByDescending(a => a.OrderDetails.Count())
+                .Take(count)
+                .ToList();
         }
     }
 }

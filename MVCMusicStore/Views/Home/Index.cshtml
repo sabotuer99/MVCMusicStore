@@ -1,5 +1,24 @@
-﻿@{
+﻿@model List<MVCMusicStore.Models.Album>
+@{
     ViewBag.Title = "Home Page";
 }
 
-<h2>This is the Home Page</h2>
+<div id="promotion">
+
+</div>
+
+<h3><em>Fresh</em> off the grill</h3>
+
+<ul id="album-list">
+    @foreach (var album in Model)
+    {
+        <li>
+            <a href="@Url.Action("Details", new{id=album.AlbumId})">
+                <img alt="@album.Title" src="@album.AlbumArtUrl" />
+                <span>@album.Title</span>
+
+            </a>
+        </li>
+    }
+
+</ul>

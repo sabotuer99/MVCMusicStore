@@ -4,15 +4,23 @@
     ViewBag.Title = "Browse";
 }
 
-<h2>Browsing Genre: @Model.Name</h2>
+<div class="genre">
+    <h3>Browsing Genre: <em>@Model.Name</em></h3>
 
-<ul>
-    @foreach (var album in Model.Albums)
-    {
-        <li>
-            @*@album.Title*@
-            @Html.ActionLink(album.Title, "Details", new { id = album.AlbumId})
-        </li>
-    }
+    <ul id="album-list">
+        @foreach (var album in Model.Albums)
+        {
+            <li>
+                @*@album.Title*@
+                @*@Html.ActionLink(album.Title, "Details", new { id = album.AlbumId })*@
 
-</ul>
+                <a href="@Url.Action("Details", new{id=album.AlbumId})">
+                    <img alt="@album.Title" src="@album.AlbumArtUrl" />
+                    <span>@album.Title</span>
+
+                </a>
+            </li>
+        }
+
+    </ul>
+</div>

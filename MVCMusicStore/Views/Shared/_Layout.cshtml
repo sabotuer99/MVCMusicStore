@@ -14,6 +14,7 @@
         <ul id="navlist">
             <li class="first"><a href="/" id="current">Home</a></li>
             <li><a href="/Store/">Store</a></li>
+            <li>@{Html.RenderAction("CartSummary","ShoppingCart");}</li>
             @if (User.IsInRole("Administrator"))
             {
                 <li><a href="/StoreManager/">Admin</a></li>
@@ -24,7 +25,11 @@
         </div>
     </div>
 
-    @RenderBody()
+    @{Html.RenderAction("GenreMenu", "Store");}
+
+    <div id="main">
+        @RenderBody()
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

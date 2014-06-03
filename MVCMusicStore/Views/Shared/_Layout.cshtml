@@ -14,7 +14,14 @@
         <ul id="navlist">
             <li class="first"><a href="/" id="current">Home</a></li>
             <li><a href="/Store/">Store</a></li>
+            @if (User.IsInRole("Administrator"))
+            {
+                <li><a href="/StoreManager/">Admin</a></li>
+            }
         </ul>
+        <div  style="float:right;clear:right;" id="login">
+            @Html.Partial("_LoginPartial")
+        </div>
     </div>
 
     @RenderBody()
